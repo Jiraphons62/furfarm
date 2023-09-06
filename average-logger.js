@@ -1,19 +1,25 @@
-const fs = require('fs');
-const path = require('path');
+const jsonfile = require('jsonfile')
+const fs = require('fs')
 
-const today = new Date().toISOString().slice(0, 10); // ดึงวันปัจจุบัน (yyyy-mm-dd)
-const filename = `data_${today}.txt`;
+async function logger(data) {
+  // บันทึกลงในไฟล์ข้อความ
+  const today = new Date().toISOString().slice(0, 10);
+  const filename = `./data_${today}.json`;
 
-// ตรวจสอบว่ามีไฟล์ข้อมูลใหม่สร้างหรือไม่
-if (!fs.existsSync(filename)) {
-  fs.writeFileSync(filename, `Date: ${today}\n`);
-  fs.appendFileSync(filename, `Raw Data:\n`);
-  fs.appendFileSync(filename, JSON.stringify(data, null, 2));
-  console.log(`New data file created: ${filename}`);
+  if (!fs.existsSync(filename)) {
+    await fs.writeFile(filename, JSON.stringify({ data: [] }), (err) => {
+      console.log(`File ${filename} has been created`);
+    });
+  }
+
+  const obj = await jsonfile.readFile(filename)
+  obj.data.push(data)
+
+  await fs.writeFile(filename, JSON.stringify(obj), (err) => {
+    console.log(`File ${filename} has been updated`);
+  });
+
+  console.log(`Data saved to ${filename}`);
 }
 
-// ตรวจสอบไฟล์ข้อมูลที่เก่ากว่า 7 วันและลบออก
-const sevenDaysAgo = new Date();
-sevenDaysAgo.setDate(sevenDaysAgo.getDate() - 7);
-
-fs.readdir
+module.exports = logger
