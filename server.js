@@ -52,11 +52,23 @@ const intervalId = setInterval(async () => {
   }
 }, 5000);
 
-// เลิกเก็บข้อมูลเมื่อครบ1วัน
-//   socket.on('disconnect', () => {
-//     clearInterval(intervalId);
-//   });
-// });
+
+
+app.get('/switch', async (req, res) => {
+  try {
+    const status = req.query.status
+    const setSwitch = status === 'on' ? 0 : 1
+    await db.ref('/switch').set(setSwitch);
+    return res.status(200).json({ switch: setSwitch })
+  } catch (error) {
+    return res.status(500).json(error)
+  }
+
+
+  // switchRef.set(1);
+
+})
+
 
 server.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
