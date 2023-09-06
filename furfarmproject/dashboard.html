@@ -30,14 +30,15 @@
         <link href="css/chart.css" rel="stylesheet">
 
         <link href="css/switch.css" rel="stylesheet">
-        
 
-    <title>FURFARM - Login & Registration Form</title> 
+        <!-- ===== socket.io ===== --> 
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.1/socket.io.js"></script>
+  
+        
+    <title>FURFARM - Dashboard</title> 
 </head>
 <body>
-
         <main>
-
             <nav class="navbar navbar-expand-lg">
                 <div class="container">
                     <a class="navbar-brand" href="index.html">
@@ -122,22 +123,21 @@
                     <div class="row">
                         <div class="col-lg-12 col-12">
                             <h3 class="mb-4">การใช้พลังงาน</h3>
-                        </div>                       
+                        </div>  
+                                            
                         <div class="col-12">
                             <div class="tab-content" id="myTabContent">
                                 <div class="tab-pane fade show active" id="design-tab-pane" role="tabpanel" aria-labelledby="design-tab" tabindex="0">
                                     <div class="row">                                       
                                         <div class="col-lg-4 col-md-6 col-12 mb-4 mb-lg-0">
                                             <div class="custom-block bg-white shadow-lg">
-                                                <a href="topics-detail.html">
                                                     <div class="d-flex">
                                                         <div>
                                                             <h5 class="mb-2">อุณหภูมิ</h5>
-                                                            
                                                         </div>
                                                     </div>
-                                                    <div class="pie animate" style="--p:90;--c:aquamarine">30.4 °C </div> 
-                                                </a>
+                                                        <div class="pie animate" style="--p:90;--c:aquamarine">
+                                                        </div> 
                                             </div>
                                         </div>
 
@@ -151,7 +151,6 @@
                                                         </div>
                                                     </div>
                                                     <div class="pie animate" style="--p:90;--c:aquamarine">24 hr</div>
-                                                </a>
                                                 <input type="checkbox" id="toggle" class="toggleCheckbox" />
                                                     <label for="toggle" class='toggleContainer'>
                                                     <div>ON</div>   
@@ -168,8 +167,8 @@
                                                         </div>
                                                     </div>
                                                     
-                                                    <div class="pie animate" style="--p:90;--c:aquamarine">74.2 % </div>
-                                                </a>
+                                                <div class="pie animate" style="--p:90;--c:aquamarine">
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
@@ -332,6 +331,5 @@
         <script src="js/jquery.sticky.js"></script>
         <script src="js/custom.js"></script>
         <script src="js/script.js"></script>
-
     </body>
 </html>
