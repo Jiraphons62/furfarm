@@ -1,13 +1,14 @@
 const express = require('express');
 const http = require('http');
-const socketIo = require('socket.io');
+//const socketIo = require('socket.io');
 const admin = require('firebase-admin');
 const cors = require('cors');
 const logger = require('./average-logger');
 
 const app = express();
 const server = http.createServer(app);
-const io = socketIo(server);
+const { Server } = require("socket.io")
+const io = new Server(server);
 const PORT = process.env.PORT || 3000;
 
 const serviceAccount = require('./imandfriends-5d2fa-default-rtdb-export');
@@ -45,7 +46,8 @@ const intervalId = setInterval(async () => {
         Humid: humidityVal,
         Temp: temperatureVal,
         Switch: switchVal,
-      })
+      });
+      io.emit('dataFromServer', { humidity: humidityVal, temperature: temperatureVal });
     });
   } catch (error) {
     console.error('Error fetching data:', error);
@@ -73,3 +75,6 @@ app.get('/switch', async (req, res) => {
 server.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
 });
+
+
+
