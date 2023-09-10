@@ -3,12 +3,18 @@ const http = require('http');
 //const socketIo = require('socket.io');
 const admin = require('firebase-admin');
 const cors = require('cors');
-const logger = require('./average-logger');
+const avg = require('./average-logger');
+const logger = require('./save-logger');
+
+
 
 const app = express();
 const server = http.createServer(app);
-const { Server } = require("socket.io")
-const io = new Server(server);
+const io = require('socket.io')(server, {
+  cors: {
+    origin: '*',
+  }
+});
 const PORT = process.env.PORT || 3000;
 
 const serviceAccount = require('./imandfriends-5d2fa-default-rtdb-export');
@@ -22,9 +28,16 @@ admin.initializeApp({
 const db = admin.database();
 
 app.use(express.static('public'));
-app.use(cors());
+app.use(cors({ origin: '*' }));
 
-// io.on('connection', (socket) => {
+const gobalVal = {
+  humidityVal: 0,
+  temperatureVal: 0,
+  switchVal: 0,
+}
+
+io.emit()
+
 const firebaseRef = db.ref('/'); // replace with your database path
 
 // รีข้อมูลทุกๆ5วิ
@@ -38,25 +51,30 @@ const intervalId = setInterval(async () => {
       const temperatureVal = data.Temp;
       const switchVal = data.switch;
 
+      logger({ Humid: humidityVal, Temp: temperatureVal, Switch: switchVal });
 
-      console.log('Humidity: ', humidityVal); //หาชื่อตัวแปร
-      console.log('Temperature: ', temperatureVal);
-      console.log('Switch: ', switchVal);
-      logger({
-        Humid: humidityVal,
-        Temp: temperatureVal,
-        Switch: switchVal,
-      });
-      io.emit('dataFromServer', { humidity: humidityVal, temperature: temperatureVal });
+      gobalVal.humidityVal = humidityVal
+      gobalVal.temperatureVal = temperatureVal
+      gobalVal.switchVal = switchVal
+
+      io.emit('dataFromServer', { humidity: humidityVal, temperature: temperatureVal, switch: switchVal, });
     });
   } catch (error) {
     console.error('Error fetching data:', error);
   }
 }, 5000);
 
+app.get('/dashboard', async (req, res) => {
+  try {
+    const week = await avg()
+    return res.status(200).json(week)
+  } catch (error) {
+    return res.status(500).json(error)
+  }
+})
 
 
-app.get('/switch', async (req, res) => {
+app.post('/switch', async (req, res) => {
   try {
     const status = req.query.status
     const setSwitch = status === 'on' ? 0 : 1
@@ -65,12 +83,7 @@ app.get('/switch', async (req, res) => {
   } catch (error) {
     return res.status(500).json(error)
   }
-
-
-  // switchRef.set(1);
-
 })
-
 
 server.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);

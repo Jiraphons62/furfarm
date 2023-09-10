@@ -1,353 +1,483 @@
 <!DOCTYPE html>
 <!-- Coding By CodingNepal - codingnepalweb.com -->
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
+
     <!-- ===== Icons IMAGE===== -->
     <link href="images/logoff.png" rel="icon" type="image/icon">
 
     <!-- ===== Iconscout CSS ===== -->
     <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
 
-    <!-- ===== CSS ===== -->    
-        <link rel="preconnect" href="https://fonts.googleapis.com">
-        
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <!-- ===== CSS ===== -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
 
-        <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700&family=Open+Sans&display=swap" rel="stylesheet">
-                        
-        <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-        <link href="css/bootstrap-icons.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700&family=Open+Sans&display=swap"
+        rel="stylesheet">
 
-        <link href="css/styleindex.css" rel="stylesheet">
+    <link href="css/bootstrap.min.css" rel="stylesheet">
 
-        <link href="css/piechart.css" rel="stylesheet">
+    <link href="css/bootstrap-icons.css" rel="stylesheet">
 
-        <link href="css/chart.css" rel="stylesheet">
+    <link href="css/styleindex.css" rel="stylesheet">
 
-        <link href="css/switch.css" rel="stylesheet">
-        
+    <link href="css/piechart.css" rel="stylesheet">
 
-    <title>FURFARM - Dashboard</title> 
+    <link href="css/chart.css" rel="stylesheet">
+
+    <link href="css/switch.css" rel="stylesheet">
+
+
+    <title>FURFARM - Dashboard</title>
     <script src="js/script.js"></script>
 </head>
+
 <body>
-    <script src="/socket.io/socket.io.js"></script>
-<script>
-  var socket = io();
-    </script>
 
-        <main>
+    <main>
 
-            <nav class="navbar navbar-expand-lg">
-                <div class="container">
-                    <a class="navbar-brand" href="index.html">
-                        <img src="images/logoff.png" with="50px" height="50px">
-                        <span>FURFARM</span>
-                    </a>
+        <nav class="navbar navbar-expand-lg">
+            <div class="container">
+                <a class="navbar-brand" href="index.html">
+                    <img src="images/logoff.png" with="50px" height="50px">
+                    <span>FURFARM</span>
+                </a>
 
-                    <div class="d-lg-none ms-auto me-4">
-                        <a href="#top" class="navbar-icon bi-person smoothscroll"></a>
-                    </div>
-    
-                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                        <span class="navbar-toggler-icon"></span>
-                    </button>
-    
-                    <div class="collapse navbar-collapse" id="navbarNav">
-                        <ul class="navbar-nav ms-lg-5 me-lg-auto">
-                            <li class="nav-item">
-                                <a class="nav-link click-scroll" href="index.html#section_1">Home</a>
-                            </li>
+                <div class="d-lg-none ms-auto me-4">
+                    <a href="#top" class="navbar-icon bi-person smoothscroll"></a>
+                </div>
 
-                            <li class="nav-item">
-                                <a class="nav-link click-scroll" href="index.html#section_2">การปลูกผักไฮโดรโปรนิกส์</a>
-                            </li>
-    
-                            <li class="nav-item">
-                                <a class="nav-link click-scroll" href="index.html#section_3">การผสมปุ๋ยน้ำ</a>
-                            </li>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
 
-                            <li class="nav-item">
-                                <a class="nav-link click-scroll" href="index.html#section_4">การเพราะเมล็ดผัก</a>
-                            </li>
-    
-                            <li class="nav-item">
-                                <a class="nav-link click-scroll" href="index.html#section_5">ตารางแสดงค่า EC</a>
-                            </li>
-
-                            <li class="nav-item">
-                                <a class="nav-link click-scroll" href="dashboard.html">DASHBOARD</a>
-                            </li>
-                        </ul>
-                    </div>
-
-                    <div class="d-none d-lg-block">
-                        <li class="dropdown">
-                            <a class="navbar-icon bi-person smoothscroll" class="nav-link dropdown-toggle" id="navbarLightDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false"></a>
-
-                            <ul class="dropdown-menu dropdown-menu-light" aria-labelledby="navbarLightDropdownMenuLink">
-                                <li><a class="dropdown-item" href="login.html">LOGOUT</a></li>
-                            </ul>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav ms-lg-5 me-lg-auto">
+                        <li class="nav-item">
+                            <a class="nav-link click-scroll" href="index.html#section_1">Home</a>
                         </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link click-scroll" href="index.html#section_2">การปลูกผักไฮโดรโปรนิกส์</a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link click-scroll" href="index.html#section_3">การผสมปุ๋ยน้ำ</a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link click-scroll" href="index.html#section_4">การเพราะเมล็ดผัก</a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link click-scroll" href="index.html#section_5">ตารางแสดงค่า EC</a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link click-scroll" href="dashboard.html">DASHBOARD</a>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="d-none d-lg-block">
+                    <li class="dropdown">
+                        <a class="navbar-icon bi-person smoothscroll" class="nav-link dropdown-toggle"
+                            id="navbarLightDropdownMenuLink" role="button" data-bs-toggle="dropdown"
+                            aria-expanded="false"></a>
+
+                        <ul class="dropdown-menu dropdown-menu-light" aria-labelledby="navbarLightDropdownMenuLink">
+                            <li><a class="dropdown-item" href="login.html">LOGOUT</a></li>
+                        </ul>
+                    </li>
                     </a>
+                </div>
+            </div>
+            </div>
+        </nav>
+
+
+        <header class="site-header d-flex flex-column justify-content-center align-items-center">
+            <div class="container">
+                <div class="row align-items-center">
+
+                    <div class="col-lg-5 col-12">
+                        <nav aria-label="breadcrumb">
+                            <ol class="breadcrumb">
+                                <li class="breadcrumb-item"><a href="index.html">Homepage</a></li>
+
+                                <li class="breadcrumb-item active" aria-current="page">Dashboard & Control</li>
+                            </ol>
+                        </nav>
+
+                        <h2 class="text-white">Dashboard & Control</h2>
                     </div>
+
                 </div>
-                </div>
-            </nav>
+            </div>
+        </header>
 
 
-            <header class="site-header d-flex flex-column justify-content-center align-items-center">
-                <div class="container">
-                    <div class="row align-items-center">
-
-                        <div class="col-lg-5 col-12">
-                            <nav aria-label="breadcrumb">
-                                <ol class="breadcrumb">
-                                    <li class="breadcrumb-item"><a href="index.html">Homepage</a></li>
-
-                                    <li class="breadcrumb-item active" aria-current="page">Dashboard & Control</li>
-                                </ol>
-                            </nav>
-
-                            <h2 class="text-white">Dashboard & Control</h2>
-                        </div>
-
+        <section class="section-padding">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12 col-12">
+                        <h3 class="mb-4">การใช้พลังงาน</h3>
                     </div>
-                </div>
-            </header>
 
+                    <div class="col-12">
+                        <div class="tab-content" id="myTabContent">
+                            <div class="tab-pane fade show active" id="design-tab-pane" role="tabpanel"
+                                aria-labelledby="design-tab" tabindex="0">
+                                <div class="row">
 
-            <section class="section-padding">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-lg-12 col-12">
-                            <h3 class="mb-4">การใช้พลังงาน</h3>
-                        </div>  
-                        
-                        <!-- //เพิ่มมาใหม่
-                        <main>
-                            <p>นี่คือหน้าหลักของเรา</p>
-                            <button id="fetchDataButton">ดึงข้อมูลจากเซิร์ฟเวอร์</button>
-                            <div id="dataContainer"></div>
-                        </main>
-                    
-                        <script src="frontend.js"></script>
-                        // -->
+                                    <div class="col-lg-4 col-md-6 col-12 mb-4 mb-lg-0">
+                                        <div class="custom-block bg-white shadow-lg">
+                                            <div class="d-flex">
+                                                <div>
 
-                        <div class="col-12">
-                            <div class="tab-content" id="myTabContent">
-                                <div class="tab-pane fade show active" id="design-tab-pane" role="tabpanel" aria-labelledby="design-tab" tabindex="0">
-                                    <div class="row">                                       
+                                                    <h5 class="mb-2">อุณหภูมิ</h5>
 
-                                        <div class="col-lg-4 col-md-6 col-12 mb-4 mb-lg-0">
-                                            <div class="custom-block bg-white shadow-lg">
-                                                    <div class="d-flex">
-                                                        <div>
-                                                            
-                                                            <h5 class="mb-2">อุณหภูมิ</h5>
-                                                            
-                                                        </div>
-                                                    </div>
-                                                    <!-- <p id="temperatureValue">อุณหภูมิ: <span id="temperature"></span> °C</p> -->
-                                                </a>
+                                                </div>
                                             </div>
-                                        </div>
 
-                                        <div class="col-lg-4 col-md-6 col-12 mb-4 mb-lg-0">
-                                            <div class="custom-block bg-white shadow-lg">
-                                                    <div class="d-flex">
-                                                        <div>
-                                                            
-                                                            <h5 class="mb-2">หลอดไฟ</h5>
-                                                            
-                                                        </div>
-                                                    </div>
-                                                    <div class="pie animate" style="--p:90;--c:aquamarine">24 hr</div>
-                                                <input type="checkbox" id="toggle" class="toggleCheckbox" />
-                                                    <label for="toggle" class='toggleContainer'>
-                                                    <div>ON</div>   
-                                                    <div>OFF</div>
-                                                    </label>
+                                            <div id="temperatureValue" class="pie animate"
+                                                style="--p:10;--c:aquamarine">
+                                                <p id="temperatureValue">°C</p>
                                             </div>
+                                            </a>
                                         </div>
+                                    </div>
 
-                                        <div class="col-lg-4 col-md-6 col-12 mb-4 mb-lg-0">
-                                            <div class="custom-block bg-white shadow-lg">
-                                                    <div class="d-flex">
-                                                        <div>
-                                                            
-                                                            <h5 class="mb-2">ค่าความชื้น</h5>
-                                                            
-                                                        </div>
-                                                    </div>
-                                                    <div class="pie animate" style="--p:90;--c:aquamarine">72.4 %</div>
+                                    <div class="col-lg-4 col-md-6 col-12 mb-4 mb-lg-0">
+                                        <div class="custom-block bg-white shadow-lg">
+                                            <div class="d-flex">
+                                                <div>
+
+                                                    <h5 class="mb-2">หลอดไฟ</h5>
+
+                                                </div>
+                                            </div>
+                                            <div id="toggleC" class="pie animate" style="--p:90;--c:aquamarine">24 hr
+                                            </div>
+                                            <input type="checkbox" id="toggle" class="toggleCheckbox"
+                                                onclick="sendSwichStatus()" />
+                                            <label for="toggle" class='toggleContainer'>
+                                                <div>ON</div>
+                                                <div>OFF</div>
+                                            </label>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-lg-4 col-md-6 col-12 mb-4 mb-lg-0">
+                                        <div class="custom-block bg-white shadow-lg">
+                                            <div class="d-flex">
+                                                <div>
+
+                                                    <h5 class="mb-2">ค่าความชื้น</h5>
+
+                                                </div>
+                                            </div>
+                                            <div id="humidityValue" class="pie animate" style="--p:10;--c:aquamarine">
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-            </section>
-
-
-            <section class="section-padding section-bg">
-                <div class="container">
-                    <div class="row">
-
-                        <div class="col-lg-12 col-12">
-                            <h3 class="mb-4">Static</h3>
                         </div>
+        </section>
 
-                        <div class="col-lg-6 col-md-6 col-12 mt-3 mb-4 mb-lg-0">
-                            <div class="custom-block bg-white shadow-lg">
-                                    <div class="d-flex">
-                                        <div>
-                                            <h5 class="mb-2">อุณหภูมิ</h5>
-                                            <h9 class="mb-2">รายวัน</h9>
-                                        </div>
-                                    </div>
-                                    <table id="q-graph">
-                                        <thead>
-                                        <tr>
-                                        <th></th>
-                                        <th class="sent">รายวัน</th>
-                                        </tr>
-                                        </thead>
-                                        <tbody>
-                                        <tr class="qtr" id="q1">
-                                        <th scope="row">SUN</th>
-                                        <td class="sent bar" style="height: 220px;"><p>24°C</p></td>
-                                        </tr>
-                                        <tr class="qtr" id="q2">
-                                        <th scope="row">MON</th>
-                                        <td class="sent bar" style="height: 260px;"><p>30 °C</p></td>
-                                        </tr>
-                                        <tr class="qtr" id="q3">
-                                        <th scope="row">TUE</th>
-                                        <td class="sent bar" style="height: 235px;"><p>27 °C</p></td>
-                                        </tr>
-                                        <tr class="qtr" id="q4">
-                                        <th scope="row">WED</th>
-                                        <td class="sent bar" style="height: 220px;"><p>24 °C</p></td>
-                                        </tr>
-                                        <tr class="qtr" id="q5">
-                                            <th scope="row">THU</th>
-                                            <td class="sent bar" style="height: 220px;"><p>24 °C</p></td>
-                                            </tr>
-                                            <tr class="qtr" id="q6">
-                                                <th scope="row">FRI</th>
-                                                <td class="sent bar" style="height: 35px;"><p> °C</p></td>
-                                                </tr>
-                                                <tr class="qtr" id="q7">
-                                                    <th scope="row">SAT</th>
-                                                    <td class="sent bar" style="height: 35px;"><p> °C</p></td>
-                                                    </tr>
-                                        </tbody>
-                                        </table>
-                            </div>
-                        </div>
 
-                        <div class="col-lg-6 col-md-6 col-12 mt-3 mb-4 mb-lg-0">
-                            <div class="custom-block bg-white shadow-lg">
-                                    <div class="d-flex">
-                                        <div>
-                                            <h5 class="mb-2">ค่าความชื้น</h5>
-                                            <h9 class="mb-2">รายวัน</h9>
-                                        </div>
-                                    </div>
-                                    <table id="q-graph">
-                                        <thead>
-                                        <tr>
-                                        <th></th>
-                                        <th class="sent">รายวัน</th>
-                                        </tr>
-                                        </thead>
-                                        <tbody>
-                                        <tr class="qtr" id="q1">
-                                        <th scope="row">SUN</th>
-                                        <td class="sent bar" style="height: 235px;"><p>74 %</p></td>
-                                        </tr>
-                                        <tr class="qtr" id="q2">
-                                        <th scope="row">MON</th>
-                                        <td class="sent bar" style="height: 235px;"><p>74 %</p></td>
-                                        </tr>
-                                        <tr class="qtr" id="q3">
-                                        <th scope="row">TUE</th>
-                                        <td class="sent bar" style="height: 260px;"><p>76 %</p></td>
-                                        </tr>
-                                        <tr class="qtr" id="q4">
-                                        <th scope="row">WED</th>
-                                        <td class="sent bar" style="height: 220px;"><p>72 %</p></td>
-                                        </tr>
-                                        <tr class="qtr" id="q5">
-                                            <th scope="row">THU</th>
-                                            <td class="sent bar" style="height: 220px;"><p>72 %</p></td>
-                                            </tr>
-                                            <tr class="qtr" id="q6">
-                                                <th scope="row">FRI</th>
-                                                <td class="sent bar" style="height: 35px;"><p> %</p></td>
-                                                </tr>
-                                                <tr class="qtr" id="q7">
-                                                    <th scope="row">SAT</th>
-                                                    <td class="sent bar" style="height: 35px;"><p> %</p></td>
-                                                    </tr>
-                                        </tbody>
-                                        </table>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
-        </main>
-
-		<footer class="site-footer section-padding">
+        <section class="section-padding section-bg">
             <div class="container">
                 <div class="row">
 
-                    <div class="col-lg-3 col-12 mb-4 pb-2">
-                        <a class="navbar-brand mb-2" href="index.html">
-                            <img src="images/logoff.png" with="50px" height="50px">
-                            <span>FURFARM</span>
-                        </a>
+                    <div class="col-lg-12 col-12">
+                        <h3 class="mb-4">Static</h3>
                     </div>
 
-                    <div class="col-lg-3 col-md-4 col-6 mb-4 mb-lg-0">
-                        <h6 class="site-footer-title mb-3">Information</h6>
-
-                        <p class="text-white d-flex mb-1">
-                            <a href="tel: xxx-xxx-xxxx" class="site-footer-link">
-                                xxx-xxx-xxxx
-                            </a>
-                        </p>
-
-                        <p class="text-white d-flex">
-                            <a href="mailto:info@company.com" class="site-footer-link">
-                                xxx@gmail.com
-                            </a>
-                        </p>
+                    <div class="col-lg-6 col-md-6 col-12 mt-3 mb-4 mb-lg-0">
+                        <div class="custom-block bg-white shadow-lg">
+                            <div class="d-flex">
+                                <div>
+                                    <h5 class="mb-2">อุณหภูมิ</h5>
+                                    <h9 class="mb-2">รายวัน</h9>
+                                </div>
+                            </div>
+                            <table id="q-graph">
+                                <thead>
+                                    <tr>
+                                        <th></th>
+                                        <th class="sent">รายวัน</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr class="qtr" id="q1">
+                                        <th id="tempTitleDashboard1" scope="row">SUN</th>
+                                        <td id="tempGraphDashboard1" class="sent bar" style="height: 220px;">
+                                            <p>24°C</p>
+                                        </td>
+                                    </tr>
+                                    <tr class="qtr" id="q2">
+                                        <th id="tempTitleDashboard2" scope="row">MON</th>
+                                        <td id="tempGraphDashboard2" class="sent bar" style="height: 260px;">
+                                            <p>30 °C</p>
+                                        </td>
+                                    </tr>
+                                    <tr class="qtr" id="q3">
+                                        <th id="tempTitleDashboard3" scope="row">TUE</th>
+                                        <td id="tempGraphDashboard3" class="sent bar" style="height: 300px;">
+                                            <p>27 °C</p>
+                                        </td>
+                                    </tr>
+                                    <tr class="qtr" id="q4">
+                                        <th id="tempTitleDashboard4" scope="row">WED</th>
+                                        <td id="tempGraphDashboard4" class="sent bar" style="height: 220px;">
+                                            <p>24 °C</p>
+                                        </td>
+                                    </tr>
+                                    <tr class="qtr" id="q5">
+                                        <th id="tempTitleDashboard5" scope="row">THU</th>
+                                        <td id="tempGraphDashboard5" class="sent bar" style="height: 220px;">
+                                            <p>24 °C</p>
+                                        </td>
+                                    </tr>
+                                    <tr class="qtr" id="q6">
+                                        <th id="tempTitleDashboard6" scope="row">FRI</th>
+                                        <td id="tempGraphDashboard6" class="sent bar" style="height: 35px;">
+                                            <p> °C</p>
+                                        </td>
+                                    </tr>
+                                    <tr class="qtr" id="q7">
+                                        <th id="tempTitleDashboard7" scope="row">SAT</th>
+                                        <td id="tempGraphDashboard7" class="sent bar" style="height: 100px;">
+                                            <p>0 °C</p>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
 
-                        <p class="copyright-text mt-lg-5 mt-4">Copyright © 2023 FURFARM PROJECTS. 
-                        <br><br>Design: <a rel="nofollow" target="_blank">62361192 62361222 62367163</a></p>
-                        
+                    <div class="col-lg-6 col-md-6 col-12 mt-3 mb-4 mb-lg-0">
+                        <div class="custom-block bg-white shadow-lg">
+                            <div class="d-flex">
+                                <div>
+                                    <h5 class="mb-2">ค่าความชื้น</h5>
+                                    <h9 class="mb-2">รายวัน</h9>
+                                </div>
+                            </div>
+                            <table id="q-graph">
+                                <thead>
+                                    <tr>
+                                        <th></th>
+                                        <th class="sent">รายวัน</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr class="qtr" id="q1">
+                                        <th id="humidityTitleDashboard1" scope="row">SUN</th>
+                                        <td id="humidityGraphDashboard1" class="sent bar" style="height: 235px;">
+                                            <p>74 %</p>
+                                        </td>
+                                    </tr>
+                                    <tr class="qtr" id="q2">
+                                        <th id="humidityTitleDashboard2" scope="row">MON</th>
+                                        <td id="humidityGraphDashboard2" class="sent bar" style="height: 235px;">
+                                            <p>74 %</p>
+                                        </td>
+                                    </tr>
+                                    <tr class="qtr" id="q3">
+                                        <th id="humidityTitleDashboard3" scope="row">TUE</th>
+                                        <td id="humidityGraphDashboard3" class="sent bar" style="height: 260px;">
+                                            <p>76 %</p>
+                                        </td>
+                                    </tr>
+                                    <tr class="qtr" id="q4">
+                                        <th id="humidityTitleDashboard4" scope="row">WED</th>
+                                        <td id="humidityGraphDashboard4" class="sent bar" style="height: 220px;">
+                                            <p>10 %</p>
+                                        </td>
+                                    </tr>
+                                    <tr class="qtr" id="q5">
+                                        <th id="humidityTitleDashboard5" scope="row">THU</th>
+                                        <td id="humidityGraphDashboard5" class="sent bar" style="height: 220px;">
+                                            <p>72 %</p>
+                                        </td>
+                                    </tr>
+                                    <tr class="qtr" id="q6">
+                                        <th id="humidityTitleDashboard6" scope="row">FRI</th>
+                                        <td id="humidityGraphDashboard6" class="sent bar" style="height: 35px;">
+                                            <p> %</p>
+                                        </td>
+                                    </tr>
+                                    <tr class="qtr" id="q7">
+                                        <th id="humidityTitleDashboard7" scope="row">SAT</th>
+                                        <td id="humidityGraphDashboard7" class="sent bar" style="height: 35px;">
+                                            <p> %</p>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
-
                 </div>
             </div>
-        </footer>
+        </section>
+    </main>
+
+    <footer class="site-footer section-padding">
+        <div class="container">
+            <div class="row">
+
+                <div class="col-lg-3 col-12 mb-4 pb-2">
+                    <a class="navbar-brand mb-2" href="index.html">
+                        <img src="images/logoff.png" with="50px" height="50px">
+                        <span>FURFARM</span>
+                    </a>
+                </div>
+
+                <div class="col-lg-3 col-md-4 col-6 mb-4 mb-lg-0">
+                    <h6 class="site-footer-title mb-3">Information</h6>
+
+                    <p class="text-white d-flex mb-1">
+                        <a href="tel: xxx-xxx-xxxx" class="site-footer-link">
+                            xxx-xxx-xxxx
+                        </a>
+                    </p>
+
+                    <p class="text-white d-flex">
+                        <a href="mailto:info@company.com" class="site-footer-link">
+                            xxx@gmail.com
+                        </a>
+                    </p>
+                </div>
+
+                <p class="copyright-text mt-lg-5 mt-4">Copyright © 2023 FURFARM PROJECTS.
+                    <br><br>Design: <a rel="nofollow" target="_blank">62361192 62361222 62367163</a>
+                </p>
+
+            </div>
+
+        </div>
+        </div>
+    </footer>
 
 
 
-        <!-- JAVASCRIPT FILES -->
-        <script src="js/jquery.min.js"></script>
-        <script src="js/bootstrap.bundle.min.js"></script>
-        <script src="js/jquery.sticky.js"></script>
-        <script src="js/custom.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.1/socket.io.js"></script>
+    <!-- JAVASCRIPT FILES -->
+    <script src="js/jquery.min.js"></script>
+    <script src="js/bootstrap.bundle.min.js"></script>
+    <script src="js/jquery.sticky.js"></script>
+    <script src="js/custom.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.1/socket.io.js"></script>
 
-    </body>
+
+    <script src="https://cdn.socket.io/4.5.4/socket.io.min.js"></script>
+    <script>
+        const callDashboard = async () => {
+            const response = await fetch('http://localhost:3000/dashboard', {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            });
+            const myJson = await response.json(); //extract JSON from the http response
+            // do something with myJson
+            return (myJson)
+        }
+
+        const setSwichAction = async (isOn = 'on') => {
+            const response = await fetch('http://localhost:3000/switch?status=' + isOn, {
+                method: 'Post',
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            });
+            const myJson = await response.json(); //extract JSON from the http response
+            // do something with myJson
+            return (myJson)
+        }
+
+
+
+        var socket = io('http://localhost:3000');
+
+        socket.on('dataFromServer', function (data) {
+            console.log(data)
+            // อัปเดตค่าความชื้นและอุณหภูมิในส่วน HTML
+            const temperatureValueElement = document.getElementById('temperatureValue');
+            temperatureValueElement.textContent = `${data.temperature} °C`;
+            temperatureValueElement["--p"] = data.temperature
+            temperatureValueElement.style['cssText'] = `--p: ${data.temperature}; --c: aquamarine;`
+
+
+            const humidityValueElement = document.getElementById('humidityValue');
+            humidityValueElement.textContent = `${data.humidity}`;
+            // humidityValueElement.style["--p"] = data.humidity
+            humidityValueElement.style['cssText'] = `--p: ${data.humidity}; --c: aquamarine;`
+
+            // ใส่ข้อมูลอุณหภูมิที่ได้รับจาก Socket.IO ไปยัง HTML
+
+            // // อัปเดตสถานะของหลอดไฟ (ON/OFF) ในส่วน HTML
+            const lightStatusElement = document.getElementById('toggle');
+            const toggleCElement = document.getElementById('toggleC');
+
+
+            // console.log(lightStatusElement.)
+            lightStatusElement.checked = data.switch === 0 ? false : true;
+            toggleCElement.style['cssText'] = `--p: ${data.switch === 0 ? 100 : 0}; --c: aquamarine; `
+        });
+
+        function dashboardTempSet(name, val) {
+            const Element = document.getElementById(name);
+            Element.textContent = val
+        }
+
+        function dashboardTempStyleSet(name, val) {
+            const Element = document.getElementById(name);
+            Element.textContent = `${parseFloat(val).toFixed(0)} °C`
+            Element.style["height"] = `${val === 0 ? 20 : val * 2 + 100} px`
+        }
+
+        function humidityTempStyleSet(name, val) {
+            const Element = document.getElementById(name);
+            Element.textContent = `${parseFloat(val).toFixed(0)} `
+            Element.style["height"] = `${val === 0 ? 20 : val * 2 + 100} px`
+        }
+
+        async function fetchData() {
+            const data = await callDashboard()
+            for (let i = 1; i <= 7; i++) {
+                const toDay = new Date();
+                const date = toDay.getDate()
+                toDay.setDate(date - (7 - i));
+                dashboardTempSet("tempTitleDashboard" + i, toDay.toDateString().split(' ')[0])
+                dashboardTempStyleSet("tempGraphDashboard" + i, (data.find((e) => e.date === toDay.toDateString().split(' ')[0])).temperature)
+
+                dashboardTempSet("humidityTitleDashboard" + i, toDay.toDateString().split(' ')[0])
+                humidityTempStyleSet("humidityGraphDashboard" + i, (data.find((e) => e.date === toDay.toDateString().split(' ')[0])).humidity)
+            }
+        }
+
+        async function sendSwichStatus() {
+            const lightStatusElement = document.getElementById('toggle');
+            // console.log(lightStatusElement.)
+            if (!lightStatusElement.checked) setSwichAction('on')
+            else setSwichAction('off')
+        }
+
+        fetchData()
+
+
+    </script>
+
+</body>
+
 </html>
