@@ -1,10 +1,16 @@
 const express = require('express');
 const http = require('http');
+const bodyParser = require('body-parser');
+const cookieParser = require("cookie-parser");
 //const socketIo = require('socket.io');
 const admin = require('firebase-admin');
 const cors = require('cors');
 const avg = require('./average-logger');
 const logger = require('./save-logger');
+const bcrypt = require('bcrypt');
+const jwt = require("jsonwebtoken");
+
+const PORT = process.env.PORT || 3000;
 
 
 
@@ -15,7 +21,31 @@ const io = require('socket.io')(server, {
     origin: '*',
   }
 });
-const PORT = process.env.PORT || 3000;
+
+app.use(express.static('public'));
+app.use(cors({ origin: '*' }));
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+app.use(bodyParser.json())
+app.use(cookieParser());
+
+const authorization = (req, res, next) => {
+  const { access_token } = req.headers.cookies.split('; ').reduce((prev, current) => {
+    const [name, ...value] = current.split('=');
+    prev[name] = value.join('=');
+    return prev;
+  }, {});
+  if (!access_token) {
+    return res.sendStatus(403);
+  }
+  try {
+    const data = jwt.verify(access_token, "YOUR_SECRET_KEY");
+    return next();
+  } catch {
+    return res.sendStatus(403);
+  }
+};
+
 
 const serviceAccount = require('./imandfriends-5d2fa-default-rtdb-export');
 
@@ -27,16 +57,11 @@ admin.initializeApp({
 
 const db = admin.database();
 
-app.use(express.static('public'));
-app.use(cors({ origin: '*' }));
-
 const gobalVal = {
   humidityVal: 0,
   temperatureVal: 0,
   switchVal: 0,
 }
-
-io.emit()
 
 const firebaseRef = db.ref('/'); // replace with your database path
 
@@ -64,17 +89,63 @@ const intervalId = setInterval(async () => {
   }
 }, 5000);
 
-app.get('/dashboard', async (req, res) => {
+// Login
+app.post('/login', async (req, res) => {
+  const { email, password } = req.body;
+  try {
+    const userBase = await db.ref('users');
+    const userlist = (await userBase.get()).val()
+
+    const user = Object.values(userlist).find((e) => e.email === email)
+    if (!user) throw Error("user not found")
+    const passwordMatch = await bcrypt.compare(password, user.password);
+    if (passwordMatch) {
+      const token = jwt.sign(user, "YOUR_SECRET_KEY");
+      res.status(200).json({ token });
+    } else {
+      res.status(401).json({ message: 'Invalid credentials.' });
+    }
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: 'Error logging in.' });
+  }
+});
+
+// Register
+app.post('/register', async (req, res) => {
+  const { email, password } = req.body;
+  try {
+    const userBase = await db.ref('users');
+
+    const userlist = (await userBase.get()).val()
+    if (Object.values(userlist).some((e) => e.email === email)) {
+      res.status(400).json({ message: 'This Email exiting in system.' });
+    } else {
+      const hashedPassword = await bcrypt.hash(password, 10);
+      await userBase.push({
+        email,
+        password: hashedPassword,
+      });
+      res.status(201).json({ message: 'User registered successfully.' });
+    }
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: 'Error registering user.' });
+  }
+});
+
+
+app.get('/dashboard', authorization, async (req, res) => {
   try {
     const week = await avg()
     return res.status(200).json(week)
   } catch (error) {
-    return res.status(500).json(error)
+    return res.status(500).json({ message: error });
   }
 })
 
 
-app.post('/switch', async (req, res) => {
+app.post('/switch', authorization, async (req, res) => {
   try {
     const status = req.query.status
     const setSwitch = status === 'on' ? 0 : 1

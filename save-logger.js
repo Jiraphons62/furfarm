@@ -8,7 +8,7 @@ async function logger(data) {
   const filename = `./data_${today}.json`;
   if (!fs.existsSync(filename)) {
     await fs.writeFile(filename, JSON.stringify({ data: [] }), (err) => {
-      console.log(`File ${filename} has been created`);
+      // console.log(`File ${filename} has been created`);
     });
   }
 
@@ -16,10 +16,10 @@ async function logger(data) {
   obj.data.push(data)
 
   await fs.writeFile(filename, JSON.stringify(obj), (err) => {
-    console.log(`File ${filename} has been updated`);
+    // console.log(`File ${filename} has been updated`);
   });
 
-  console.log(`Data saved to ${filename}`);
+  // console.log(`Data saved to ${filename}`);
   // ตรวจสอบหาไฟล์ที่เก่ากว่า 7 วันและลบออก
   const sevenDaysAgo = new Date();
   sevenDaysAgo.setDate(sevenDaysAgo.getDate() - 7);

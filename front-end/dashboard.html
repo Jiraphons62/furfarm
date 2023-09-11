@@ -385,10 +385,13 @@
             const response = await fetch('http://localhost:3000/dashboard', {
                 method: 'GET',
                 headers: {
-                    'Content-Type': 'application/json'
+                    'Content-Type': 'application/json',
+                    'cookies': document.cookie
                 }
             });
+            if (response.status === 403) window.location.replace("/login.html");
             const myJson = await response.json(); //extract JSON from the http response
+
             // do something with myJson
             return (myJson)
         }
@@ -397,9 +400,11 @@
             const response = await fetch('http://localhost:3000/switch?status=' + isOn, {
                 method: 'Post',
                 headers: {
-                    'Content-Type': 'application/json'
+                    'Content-Type': 'application/json',
+                    'cookies': document.cookie
                 }
             });
+            if (response.status === 403) window.location.replace("/login.html");
             const myJson = await response.json(); //extract JSON from the http response
             // do something with myJson
             return (myJson)
