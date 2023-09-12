@@ -73,6 +73,31 @@
   </div>
 
   <script>
+
+
+    //Thanks to https://stackoverflow.com/a/27369985/5175935
+    var getCurrentScript = function () {
+
+      if (document.currentScript && (document.currentScript.src !== ''))
+        return document.currentScript.src;
+      var scripts = document.getElementsByTagName('script'),
+        str = scripts[scripts.length - 1].src;
+      if (str !== '')
+        return str;
+      //Thanks to https://stackoverflow.com/a/42594856/5175935
+      return new Error().stack.match(/(https?:[^:]*)/)[0];
+
+    };
+
+    //Thanks to https://stackoverflow.com/a/27369985/5175935
+    var getCurrentScriptPath = function () {
+      var script = getCurrentScript(),
+        path = script.substring(0, script.lastIndexOf('/'));
+      return path;
+    };
+
+
+
     async function registerUser() {
       const userElement = document.getElementById('username');
       const emailElement = document.getElementById('email');
@@ -97,7 +122,7 @@
           Element.style['color'] = 'red';
         }
         else {
-          window.location.replace("/login.html");
+          window.location.replace(getCurrentScriptPath() + "/login.html");
         }
 
 

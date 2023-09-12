@@ -108,6 +108,27 @@
     </div>
 
     <script>
+
+        var getCurrentScript = function () {
+
+            if (document.currentScript && (document.currentScript.src !== ''))
+                return document.currentScript.src;
+            var scripts = document.getElementsByTagName('script'),
+                str = scripts[scripts.length - 1].src;
+            if (str !== '')
+                return str;
+            //Thanks to https://stackoverflow.com/a/42594856/5175935
+            return new Error().stack.match(/(https?:[^:]*)/)[0];
+
+        };
+
+        //Thanks to https://stackoverflow.com/a/27369985/5175935
+        var getCurrentScriptPath = function () {
+            var script = getCurrentScript(),
+                path = script.substring(0, script.lastIndexOf('/'));
+            return path;
+        };
+
         async function loginUser() {
             const emailElement = document.getElementById('email');
             const passwordElement = document.getElementById('password');
@@ -127,7 +148,7 @@
                     const { token } = await jwt.json()
 
                     document.cookie = "access_token=" + token;
-                    window.location.replace("/dashboard.html");
+                    window.location.replace(getCurrentScriptPath() + "/dashboard.html");
                 } else {
                     const { message } = await jwt.json()
                     const Element = document.getElementById('message');
